@@ -7,8 +7,22 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+
+  def self.find_for_facebook_oauth(data_hash, signed_in_resource=nil)
+    data = data_hash['extra']['user_hash']
+    if user = User.find_by_email(data["email"])
+      if data_hash['credentials']['token'] != user.access_token
+        user.access_token = data_hash['credentials']['token']
+        user.save
+      end
+      user
+    else
+      nil
+    end
+  end
+
   def self.send_text(number, message)
-    #send a text message
+      #send a text message
     API_VERSION = '2010-04-01'
 
     # Twilio AccountSid and AuthToken
