@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  API_VERSION = '2010-04-01'
+
+  # Twilio AccountSid and AuthToken
+  ACCOUNT_SID = 'ACc940e73cf3c65d37de962d29bcd53f9e'
+  ACCOUNT_TOKEN = '2b6a5c4a0121f30d7a86b4ec33339f6b'
+
+  # Outgoing Caller ID previously validated with Twilio
+  CALLER_ID = '4124179460';
 
   def self.find_for_facebook_oauth(data_hash, signed_in_resource=nil)
     data = data_hash['extra']['user_hash']
@@ -23,15 +31,6 @@ class User < ActiveRecord::Base
 
   def self.send_text(number, message)
       #send a text message
-    API_VERSION = '2010-04-01'
-
-    # Twilio AccountSid and AuthToken
-    ACCOUNT_SID = 'ACc940e73cf3c65d37de962d29bcd53f9e'
-    ACCOUNT_TOKEN = '2b6a5c4a0121f30d7a86b4ec33339f6b'
-
-    # Outgoing Caller ID previously validated with Twilio
-    CALLER_ID = '4124179460';
-
     # Create a Twilio REST account object using your Twilio account ID and token
     account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
 
