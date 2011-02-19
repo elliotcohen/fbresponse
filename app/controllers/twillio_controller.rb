@@ -4,7 +4,7 @@ class TwillioController < ApplicationController
     render :template => 'hello'
   end
   
-  def show
+  def index
     render :template => 'hello'
   end
   
