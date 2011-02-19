@@ -41,10 +41,10 @@ class User < ActiveRecord::Base
     #    uses a HTTP POST
     d = {
         'From' => CALLER_ID,
-        'To' => '4124179460',
-        'Url' => 'http://smooth-meadow-728.heroku.com/twillio',
+        'To' => number,
+        'Body' => message,
     }
-    resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/Calls",
+    resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages",
         'POST', d)
     resp.error! unless resp.kind_of? Net::HTTPSuccess
     puts "code: %s\nbody: %s" % [resp.code, resp.body]

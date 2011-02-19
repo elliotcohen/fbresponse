@@ -6,6 +6,7 @@ class TwillioController < ApplicationController
   end
   
   def index
+    User.send_text('4124179460', 'Send an awesome test message')
     render :template => 'twillio/hello'
   end
   
