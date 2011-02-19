@@ -11,6 +11,6 @@ class TwillioController < ApplicationController
   end
   
   def success
-    render : template => 'twillio/hello'
+    render :template => 'twillio/hello'
   end
 end
