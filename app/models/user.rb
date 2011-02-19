@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
     d = {
         'From' => CALLER_ID,
         'To' => '4124179460',
-        'Url' => 'http://demo.twilio.com/welcome',
+        'Url' => 'http://smooth-meadow-728.heroku.com/twillio',
     }
     resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/Calls",
         'POST', d)
